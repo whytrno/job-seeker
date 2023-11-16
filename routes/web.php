@@ -18,4 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', [MainController::class, 'test']);
+Route::get('login', function () {
+    return response([
+        'success' => false,
+        'message' => 'You are not logged in',
+        'data' => null,
+    ], 401);
+})->name('login');

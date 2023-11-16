@@ -10,12 +10,12 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('job_seeker_profiles', function (Blueprint $table) {
+        Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('user_social_media_id')->nullable();
-            $table->string('full_name')->nullable();
+            $table->string('name')->nullable();
             $table->text('description')->nullable();
+            $table->string('industry_ids')->nullable();
             $table->string('phone')->nullable();
 
             $table->unsignedBigInteger('province_id')->nullable();
@@ -30,6 +30,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_seeker_profiles');
+        Schema::dropIfExists('profiles');
     }
 };

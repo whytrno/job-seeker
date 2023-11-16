@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Profiles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -65,10 +66,7 @@ class User extends Authenticatable
 
     public function profile()
     {
-        if ($this->role->name == 'company') {
-            return $this->hasOne(CompanyProfiles::class, 'user_id', 'id');
-        } else if ($this->role->name == 'job_seeker') {
-            return $this->hasOne(JobSeekerProfiles::class, 'user_id', 'id');
-        }
+        return $this->hasOne(Profiles::class, 'user_id', 'id');
     }
 }
+

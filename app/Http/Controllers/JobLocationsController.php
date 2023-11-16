@@ -3,24 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Http\Traits\ResponseTrait;
-use App\Models\ExperienceLevels;
+use App\Models\JobLocations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ExperienceLevelsController extends Controller
+class JobLocationsController extends Controller
 {
     use ResponseTrait;
 
     public function index()
     {
-        $data = ExperienceLevels::all();
+        $data = JobLocations::all();
 
         return $this->successResponse($data);
     }
 
     public function detail($id)
     {
-        $data = ExperienceLevels::find($id);
+        $data = JobLocations::find($id);
 
         if (!$data) {
             return $this->failedResponse("Data not found");
@@ -32,14 +32,14 @@ class ExperienceLevelsController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            "name" => "required|string|unique:experience_levels,name",
+            "name" => "required|string|unique:job_locations,name",
         ]);
 
         if ($validator->fails()) {
             return $this->failedResponse($validator->errors(), 422);
         }
 
-        $data = ExperienceLevels::create([
+        $data = JobLocations::create([
             "name" => $request->name,
         ]);
 
@@ -48,14 +48,14 @@ class ExperienceLevelsController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = ExperienceLevels::find($id);
+        $data = JobLocations::find($id);
 
         if (!$data) {
             return $this->failedResponse("Data not found");
         }
 
         $validator = Validator::make($request->all(), [
-            "name" => "required|string|unique:experience_levels,name," . $id,
+            "name" => "required|string|unique:job_locations,name," . $id,
         ]);
 
         if ($validator->fails()) {
@@ -71,7 +71,7 @@ class ExperienceLevelsController extends Controller
 
     public function destroy($id)
     {
-        $data = ExperienceLevels::find($id);
+        $data = JobLocations::find($id);
 
         if (!$data) {
             return $this->failedResponse("Data not found");

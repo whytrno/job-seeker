@@ -18,6 +18,8 @@ return new class extends Migration {
             $table->string('twitter_username')->nullable();
             $table->string('linkedin_username')->nullable();
             $table->string('tiktok_username')->nullable();
+            $table->string('spoken_language_ids')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }
